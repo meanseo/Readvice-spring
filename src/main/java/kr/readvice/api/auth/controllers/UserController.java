@@ -1,7 +1,7 @@
-package kr.readvice.api.controllers;
+package kr.readvice.api.auth.controllers;
 
-import kr.readvice.api.domains.User;
-import kr.readvice.api.services.UserService;
+import kr.readvice.api.auth.domains.User;
+import kr.readvice.api.auth.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -64,15 +64,4 @@ public class UserController {
     public boolean existsById(@PathVariable String userid) {
         return service.existsById(userid);
     }
-
-    @PostMapping("/join")
-    public <S extends User> Optional<S> findOne(Example<S> example) {
-        return Optional.empty();
-    }
-
-    @PostMapping("/join")
-    public <S extends User> boolean exists(Example<S> example) {
-        return false;
-    }
-
 }
