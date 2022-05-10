@@ -184,7 +184,6 @@ public class Q1__Gugudan {
 
     static void lotto() {
         System.out.println("06 로또");
-        Random rand = new Random();
         String res = "";
         int[] lotto = new int[6];
         for (int i = 0; i < 6; i++) {
