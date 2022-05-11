@@ -1,5 +1,6 @@
 package kr.readvice.api.common.dataStructure;
 
+import static kr.readvice.api.common.lambda.Lambda.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import java.lang.module.FindException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * packageName: kr.readvice.api.common.dataStructure
@@ -20,28 +23,63 @@ import java.util.Scanner;
  * 2022-05-11         최민서        최초 생성
  */
 
-// Apple color price
+// Apple color price origin
 public class AppleList {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
+        AppleService service = new AppleServiceImpl();
         while (true) {
-            System.out.println("0.exit 1.save 2.update 3.delete 4.findByName 5.findAll 6.count 7.clear");
+            System.out.println("0.exit 1.save 2.update 3.delete 4.findById 5.findByOrigin " +
+                    "6.findByColor 7.findAll 8.count 9.existsById 10.clear");
             switch (s.next()) {
                 case "0": return;
-                case "1": break;
+                case "1":
+                    Apple yd = new Apple.Builder()
+                            .origin("영동")
+                            .color("RED")
+                            .price(1000)
+                            .build();
+                    service.save(yd);
+                    Apple yd2 = new Apple.Builder()
+                            .origin("영동")
+                            .color("BLUE")
+                            .price(1500)
+                            .build();
+                    service.save(yd2);
+                    Apple pg = new Apple.Builder()
+                            .origin("풍기")
+                            .color("RED")
+                            .price(2000)
+                            .build();
+                    service.save(pg);
+                    break;
                 case "2": break;
                 case "3": break;
                 case "4": break;
-                case "5": break;
-                case "6": break;
+                case "5":
+                    System.out.println("5.findByOrigin");
+                    System.out.println(service.findByOrigin("영동"));
+                    break;
+                case "6":
+                    System.out.println("6.findByColor");
+                    System.out.println(service.findByColor("RED"));
+                    break;
                 case "7": break;
+                case "8": break;
+                case "9": break;
+                case "10":
+                    System.out.println("사과 가격은 "+ integer("1000"));
+                    System.out.println("내가 만든 배열 사이즈: "+ array(7).length);
+                    break;
+                case "11":
+                    break;
                 default:break;
-
             }
         }
 
     }
-    @Data static class Apple{
+    @Data
+    public static class Apple{
         protected String color, origin;
         protected int price;
 
@@ -51,13 +89,17 @@ public class AppleList {
             this.price = builder.price;
         }
 
-        @NoArgsConstructor static class Builder{
+        @NoArgsConstructor public static class Builder{
             private String color, origin;
             private int price;
             public Builder color(String color){this.color=color; return this;}
             public Builder origin(String origin){this.origin=origin; return this;}
             public Builder price(int price){this.price=price; return this;}
-            Apple build(){ return  new Apple(this);}
+            public Apple build(){ return  new Apple(this);}
+        }
+        @Override public String toString(){
+            return String.format("[사과 스펙] origin: %s, color: %s, price: %d",
+                    origin, color, price);
         }
     }
     interface AppleService{
@@ -98,12 +140,16 @@ public class AppleList {
 
         @Override
         public List<Apple> findByOrigin(String origin) {
-            return null;
+            return list.stream()
+                    .filter(apple -> apple.getOrigin().equals(origin))
+                            .collect(Collectors.toList());
         }
 
         @Override
         public List<Apple> findByColor(String color) {
-            return null;
+            return list.stream()
+                    .filter(apple -> apple.getColor().equals(color))
+                    .collect(Collectors.toList());
         }
 
         @Override
@@ -118,7 +164,16 @@ public class AppleList {
 
         @Override
         public void clear() {
-            list.clear();
+            list.clear(); // 민서 하이
         }
+    }
+    static List<Apple> filterApples(List<Apple> list, Predicate<Apple> p){
+        List<Apple> res = new ArrayList<>();
+        for (Apple apple:list){
+            if(p.test(apple)){
+                res.add(apple);
+            }
+        }
+        return res;
     }
 }

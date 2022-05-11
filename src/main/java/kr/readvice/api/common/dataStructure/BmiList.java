@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * packageName: kr.readvice.api.common.dataStructure
@@ -18,7 +19,53 @@ import java.util.List;
 
 public class BmiList {
     public static void main(String[] args) {
-
+        Scanner s = new Scanner(System.in);
+        AppleList.AppleService service = new AppleList.AppleServiceImpl();
+        while (true) {
+            System.out.println("0.exit 1.save 2.update 3.delete 4.findById 5.findByOrigin 6.findByColor 7.findAll 8.count 9.existsById 10.clear");
+            switch (s.next()) {
+                case "0":
+                    return;
+                case "1":
+                    AppleList.Apple yd = new AppleList.Apple.Builder()
+                            .origin("영동")
+                            .color("RED")
+                            .price(1000)
+                            .build();
+                    service.save(yd);
+                    AppleList.Apple yd2 = new AppleList.Apple.Builder()
+                            .origin("영동")
+                            .color("BLUE")
+                            .price(1500)
+                            .build();
+                    service.save(yd2);
+                    AppleList.Apple pg = new AppleList.Apple.Builder()
+                            .origin("풍기")
+                            .color("RED")
+                            .price(2000)
+                            .build();
+                    service.save(pg);
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    System.out.println("5.findByOrigin");
+                    System.out.println(service.findByOrigin("영동"));
+                    break;
+                case "6":
+                    System.out.println("6.findByColor");
+                    System.out.println(service.findByColor("RED"));
+                    break;
+                case "7":
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     @Data static class Bmi{
         private double height, weight;
@@ -83,4 +130,5 @@ public class BmiList {
             list.clear();
         }
     }
+
 }
