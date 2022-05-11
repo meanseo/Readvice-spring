@@ -2,6 +2,7 @@ package kr.readvice.api.common.dataStructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.*;
@@ -59,26 +60,50 @@ public class MemberCRUD {
                             .build();
                     service.save(no);
                     break;
-                case "2":break;
-                case "3":break;
-                case "4":break;
+                case "2":
+                    Member m = new Member();
+                    m.setUserid("choi");
+
+                    break;
+                case "3":
+                    Member temp = new Member();
+                    temp.setUserid("choi");
+                    service.delete(temp);
+                    break;
+                case "4":
+                    /**
+                    if(service.existsById("choi")){
+                        System.out.println(service.findById("choi"));
+                    }
+                    else {
+                        System.out.println("존재하지 않는 아이디 입니다.");
+                    }*/
+                    System.out.println(service.existsById("choi")?
+                            service.findById("choi"):"존재하지 않는 아이디 입니다.");
+                    break;
                 case "5":break;
                 case "6":break;
-                case "7":break;
-                case "8":break;
-                case "9":break;
-                default:break;
+                case "7":
+                    System.out.println("회원수: "+service.count());
+                    break;
+                case "8":
+                    System.out.println(service.existsById("choi")? "존재합니다.":"존재하지 않습니다.");
+                    break;
+                case "9":
+                    service.clear();
+                    break;
+                default:
+                    break;
             }
         }
     }
-    @Data @AllArgsConstructor
+    @Data @NoArgsConstructor
     static class Member{
-        protected String userid, name, ssn, password, profileImg, phone, email;
+        protected String userid, name, password, profileImg, phone, email;
 
         public Member(Builder builder) {
             this.userid = builder.userid;
             this.name = builder.name;
-            this.ssn = builder.ssn;
             this.password = builder.password;
             this.profileImg = builder.profileImg;
             this.phone = builder.phone;
@@ -86,10 +111,9 @@ public class MemberCRUD {
         }
 
         static class Builder{
-            private String userid, name, ssn, password, profileImg, phone, email;
+            private String userid, name, password, profileImg, phone, email;
             public Builder(String userid){this.userid=userid;}
             public Builder name(String name){this.name=name; return this;}
-            public Builder ssn(String ssn){this.ssn=ssn; return this;}
             public Builder password(String password){this.password=password; return this;}
             public Builder profileImg(String profileImg){this.profileImg=profileImg; return this;}
             public Builder phone(String phone){this.phone=phone; return this;}
@@ -98,8 +122,8 @@ public class MemberCRUD {
 
         }
         @Override public String toString(){
-            return String.format("[사용자 스펙] userid: %s, name: %s, ssn: %s, password: %s, profileImg: %s, email: %s",
-                    userid, name, ssn, password, profileImg, email);
+            return String.format("[사용자 스펙] userid: %s, name: %s, password: %s, profileImg: %s, email: %s",
+                    userid, name, password, profileImg, email);
         }
     }
     interface MemberService{
@@ -111,6 +135,7 @@ public class MemberCRUD {
         List<Member> findByName(String name);
         Boolean existsById(String id);
         int count();
+        void clear();
     }
 
     static class  MemberServiceImpl implements MemberService{
@@ -130,7 +155,7 @@ public class MemberCRUD {
 
         @Override
         public void delete(Member member) {
-            map.remove(member.getUserid(),member);
+            map.remove(member.getUserid());
         }
 
         @Override
@@ -156,6 +181,11 @@ public class MemberCRUD {
         @Override
         public int count() {
             return map.size();
+        }
+
+        @Override
+        public void clear() {
+            map.clear();
         }
     }
 }
