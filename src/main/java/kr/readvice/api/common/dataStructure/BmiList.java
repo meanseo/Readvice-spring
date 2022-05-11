@@ -27,7 +27,7 @@ public class BmiList {
 
     interface BmiService{
         void save(Bmi bmi);
-        void update(Bmi bmi);
+        void update(int i, Bmi bmi);
         void delete(Bmi bmi);
         List<Bmi> findAll();
         List<Bmi> findByGender(String gender);
@@ -45,22 +45,22 @@ public class BmiList {
 
         @Override
         public void save(Bmi bmi) {
-
+            list.add(bmi);
         }
 
         @Override
-        public void update(Bmi bmi) {
-
+        public void update(int i,Bmi bmi) {
+            list.set(i,bmi);
         }
 
         @Override
         public void delete(Bmi bmi) {
-
+            list.remove(bmi);
         }
 
         @Override
         public List<Bmi> findAll() {
-            return null;
+            return list;
         }
 
         @Override
@@ -70,17 +70,17 @@ public class BmiList {
 
         @Override
         public Bmi findByID(int i) {
-            return null;
+            return list.get(i);
         }
 
         @Override
         public int count() {
-            return 0;
+            return list.size();
         }
 
         @Override
         public void clear() {
-
+            list.clear();
         }
     }
 }

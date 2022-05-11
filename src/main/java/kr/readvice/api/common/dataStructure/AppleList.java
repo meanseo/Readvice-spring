@@ -14,9 +14,9 @@ import java.util.Scanner;
  * fileName        : AppleList
  * author           : 최민서
  * date               : 2022-05-11
- * ================================
+ * =====================================
  * DATE              AUTHOR        NOTE
- * ================================
+ * =====================================
  * 2022-05-11         최민서        최초 생성
  */
 
@@ -58,12 +58,11 @@ public class AppleList {
             public Builder origin(String origin){this.origin=origin; return this;}
             public Builder price(int price){this.price=price; return this;}
             Apple build(){ return  new Apple(this);}
-
         }
     }
     interface AppleService{
         void save(Apple apple);
-        void update(Apple apple);
+        void update(int i, Apple apple);
         void delete(Apple apple);
         List<Apple> findAll();
         List<Apple> findByOrigin(String origin);
@@ -83,8 +82,8 @@ public class AppleList {
         }
 
         @Override
-        public void update(Apple apple) {
-
+        public void update(int i, Apple apple) {
+            list.set(i, apple);
         }
 
         @Override
@@ -94,7 +93,7 @@ public class AppleList {
 
         @Override
         public List<Apple> findAll() {
-            return null;
+            return list;
         }
 
         @Override

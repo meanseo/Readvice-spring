@@ -139,9 +139,9 @@ public class MemberCRUD {
     }
 
     static class  MemberServiceImpl implements MemberService{
-        Map<String, Member> map;
+        private final Map<String, Member> map;
 
-        MemberServiceImpl(){
+        public MemberServiceImpl(){
             this.map = new HashMap<>();
         }
         @Override public void save(Member member){
