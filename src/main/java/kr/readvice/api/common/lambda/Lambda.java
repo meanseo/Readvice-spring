@@ -3,11 +3,10 @@ package kr.readvice.api.common.lambda;
 
 import static kr.readvice.api.common.dataStructure.AppleList.Apple;
 
+import java.io.File;
 import java.util.Arrays;
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.Objects;
+import java.util.function.*;
 
 /**
  * packageName: kr.readvice.api.common.lambda
@@ -23,6 +22,7 @@ import java.util.function.Predicate;
 public class Lambda {
     public static void main(String[] args) {
         // System.out.println(integer("900"));
+        /**
         System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
         System.out.println(
                 string(
@@ -33,7 +33,8 @@ public class Lambda {
                         )
                 )
         );
-        System.out.println(array(5).length);
+        System.out.println(array(5).length); */
+        // System.out.println(random2(1,6));
     }
     public static int integer(String s){
         Function<String, Integer> f = Integer::parseInt;
@@ -55,8 +56,12 @@ public class Lambda {
         return f.apply(i);
     }
     public static int random(int s, int e){
-        //BiFunction<Integer, Integer, Integer> f = Math::random;
-        // return f.apply(s,e);
-        return 0;
+       BiFunction<Integer, Integer, Integer> f = (t, u)-> (int)(Math.random()*u)+t;
+       return f.apply(s,e);
+    }
+    //
+    public static File makeFile(String s){
+        Function<String, File> f = File::new;
+        return f.apply(s);
     }
 }

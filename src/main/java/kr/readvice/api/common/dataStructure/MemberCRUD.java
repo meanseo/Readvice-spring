@@ -92,6 +92,9 @@ public class MemberCRUD {
                 case "9":
                     service.clear();
                     break;
+                case "10":
+                    service.findAll();
+                    break;
                 default:
                     break;
             }
