@@ -28,4 +28,8 @@ public interface UserService {
     Optional<User> findById(String userid);
 
     boolean existsById(String userid);
+
+    //custom
+
+    List<User> findByName(String name);
 }
