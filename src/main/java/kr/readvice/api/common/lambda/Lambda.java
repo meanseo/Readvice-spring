@@ -1,6 +1,8 @@
 package kr.readvice.api.common.lambda;
 
 
+import org.junit.jupiter.api.Test;
+
 import static kr.readvice.api.common.dataStructure.AppleList.Apple;
 
 import java.io.File;
@@ -20,22 +22,6 @@ import java.util.function.*;
  */
 
 public class Lambda {
-    public static void main(String[] args) {
-        // System.out.println(integer("900"));
-        /**
-        System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
-        System.out.println(
-                string(
-                        Arrays.asList(
-                                new Apple.Builder().origin("영동").color("RED").price(1000).build(),
-                                new Apple.Builder().origin("영동").color("BLUE").price(2000).build(),
-                                new Apple.Builder().origin("풍기").color("BLUE").price(3000).build()
-                        )
-                )
-        );
-        System.out.println(array(5).length); */
-        // System.out.println(random2(1,6));
-    }
     public static int integer(String s){
         Function<String, Integer> f = Integer::parseInt;
         return f.apply(s);
@@ -63,5 +49,21 @@ public class Lambda {
     public static File makeFile(String s){
         Function<String, File> f = File::new;
         return f.apply(s);
+    }
+    @Test void lambdaAppTest(){
+        // System.out.println(integer("900"));
+        /**
+         System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
+         System.out.println(
+         string(
+         Arrays.asList(
+         new Apple.Builder().origin("영동").color("RED").price(1000).build(),
+         new Apple.Builder().origin("영동").color("BLUE").price(2000).build(),
+         new Apple.Builder().origin("풍기").color("BLUE").price(3000).build()
+         )
+         )
+         );
+         System.out.println(array(5).length); */
+        // System.out.println(random2(1,6));
     }
 }

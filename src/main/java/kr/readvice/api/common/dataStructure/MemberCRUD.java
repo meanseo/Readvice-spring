@@ -3,6 +3,7 @@ package kr.readvice.api.common.dataStructure;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.Test;
 
 
 import java.util.*;
@@ -19,87 +20,6 @@ import java.util.*;
  */
 
 public class MemberCRUD {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        MemberService service = new MemberServiceImpl();
-        while (true){
-            System.out.println("0.exit 1.save 2.update 3.delete 4.findById 5.findByName 6.findAll 7.count 8.existsById 9.clear");
-            switch (s.next()){
-                case "0":return;
-                case "1":
-                    Member choi = new Member.Builder("choi")
-                            .email("choi@redvice.kr")
-                            .password("1")
-                            .name("최민서")
-                            .phone("010-1234-5678")
-                            .profileImg("team1.jpg")
-                            .build();
-                    service.save(choi);
-                    Member ha = new Member.Builder("ha")
-                            .email("ha@redvice.kr")
-                            .password("2")
-                            .name("하진희")
-                            .phone("010-5678-1234")
-                            .profileImg("team2.jpg")
-                            .build();
-                    service.save(ha);
-                    Member kim = new Member.Builder("kim")
-                            .email("kim@redvice.kr")
-                            .password("3")
-                            .name("김아름")
-                            .phone("010-1111-2222")
-                            .profileImg("team3.jpg")
-                            .build();
-                    service.save(kim);
-                    Member no = new Member.Builder("no")
-                            .email("no@redvice.kr")
-                            .password("4")
-                            .name("노홍주")
-                            .phone("010-3333-4444")
-                            .profileImg("team4.jpg")
-                            .build();
-                    service.save(no);
-                    break;
-                case "2":
-                    Member m = new Member();
-                    m.setUserid("choi");
-
-                    break;
-                case "3":
-                    Member temp = new Member();
-                    temp.setUserid("choi");
-                    service.delete(temp);
-                    break;
-                case "4":
-                    /**
-                    if(service.existsById("choi")){
-                        System.out.println(service.findById("choi"));
-                    }
-                    else {
-                        System.out.println("존재하지 않는 아이디 입니다.");
-                    }*/
-                    System.out.println(service.existsById("choi")?
-                            service.findById("choi"):"존재하지 않는 아이디 입니다.");
-                    break;
-                case "5":break;
-                case "6":break;
-                case "7":
-                    System.out.println("회원수: "+service.count());
-                    break;
-                case "8":
-                    System.out.println(service.existsById("choi")? "존재합니다.":"존재하지 않습니다.");
-                    break;
-                case "9":
-                    service.clear();
-                    break;
-                case "10":
-                    service.findAll();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
     @Data @NoArgsConstructor
     static class Member{
         protected String userid, name, password, profileImg, phone, email;
@@ -190,5 +110,66 @@ public class MemberCRUD {
         public void clear() {
             map.clear();
         }
+    }
+    @Test void memberAppTest(){
+        MemberService service = new MemberServiceImpl();
+                    Member choi = new Member.Builder("choi")
+                            .email("choi@redvice.kr")
+                            .password("1")
+                            .name("최민서")
+                            .phone("010-1234-5678")
+                            .profileImg("team1.jpg")
+                            .build();
+                    service.save(choi);
+                    Member ha = new Member.Builder("ha")
+                            .email("ha@redvice.kr")
+                            .password("2")
+                            .name("하진희")
+                            .phone("010-5678-1234")
+                            .profileImg("team2.jpg")
+                            .build();
+                    service.save(ha);
+                    Member kim = new Member.Builder("kim")
+                            .email("kim@redvice.kr")
+                            .password("3")
+                            .name("김아름")
+                            .phone("010-1111-2222")
+                            .profileImg("team3.jpg")
+                            .build();
+                    service.save(kim);
+                    Member no = new Member.Builder("no")
+                            .email("no@redvice.kr")
+                            .password("4")
+                            .name("노홍주")
+                            .phone("010-3333-4444")
+                            .profileImg("team4.jpg")
+                            .build();
+                    service.save(no);
+
+                    Member m = new Member();
+                    m.setUserid("choi");
+
+                    Member temp = new Member();
+                    temp.setUserid("choi");
+                    service.delete(temp);
+
+                    /**
+                     if(service.existsById("choi")){
+                     System.out.println(service.findById("choi"));
+                     }
+                     else {
+                     System.out.println("존재하지 않는 아이디 입니다.");
+                     }*/
+                    System.out.println(service.existsById("choi")?
+                            service.findById("choi"):"존재하지 않는 아이디 입니다.");
+
+                    System.out.println("회원수: "+service.count());
+
+                    System.out.println(service.existsById("choi")? "존재합니다.":"존재하지 않습니다.");
+
+                    service.clear();
+
+                    service.findAll();
+
     }
 }

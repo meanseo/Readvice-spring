@@ -3,6 +3,7 @@ package kr.readvice.api.common.dataStructure;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ import java.util.List;
  */
 
 public class ItemCRUD {
-    public static void main(String[] args) {}
     @Data @AllArgsConstructor class Item{
         private int id;
         private String name;
@@ -74,5 +74,8 @@ public class ItemCRUD {
         public int count() {
             return 0;
         }
+    }
+    @Test void itemAppTest(){
+
     }
 }

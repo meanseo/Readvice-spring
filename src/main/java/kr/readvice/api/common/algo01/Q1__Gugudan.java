@@ -1,5 +1,7 @@
 package kr.readvice.api.common.algo01;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,55 +16,6 @@ import java.util.Scanner;
  * 2022-05-09         최민서        최초 생성
  */
 public class Q1__Gugudan {
-    public static void main(String[] args) { // 03소수 quiz03prime()
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("1계산기 2Bmi 3주사위 4가위바위보 5윤년 \n" +
-                    "6숫자추론 7로또 8예약 9입출금 10구구단 \n" +
-                    "11큰숫자게임 12야구");
-            switch (scanner.next()) {
-                case "1":
-                    calc();
-                    break;
-                case "2":
-                    bmi();
-                    break;
-                case "3":
-                    dice();
-                    break;
-                case "4":
-                    rps();
-                    break;
-                case "5":
-                    leap();
-                    break;
-                case "6":
-                    guess();
-                    break;
-                case "7":
-                    lotto();
-                    break;
-                case "8":
-                    booking(scanner);
-                    break;
-                case "9":
-                    bank(scanner);
-                    break;
-                case "10":
-                    gugudan();
-                    break;
-                case "11":
-                    playNumberGameWithComputer();
-                    break;
-                case "12":
-                    baseball(scanner);
-                    break;
-                default:
-                    return;
-            }
-        }
-    } // main
-
     static void calc() {
 
     }
@@ -465,5 +418,20 @@ public class Q1__Gugudan {
 
         }
 
+    }
+    @Test void q1AppTest(){
+        Scanner scanner = new Scanner(System.in);
+        calc();
+        bmi();
+        dice();
+        rps();
+        leap();
+        guess();
+        lotto();
+        booking(scanner);
+        bank(scanner);
+        gugudan();
+        playNumberGameWithComputer();
+        baseball(scanner);
     }
 }
