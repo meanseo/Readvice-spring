@@ -32,23 +32,26 @@ public class HelloStream {
         }
     }
     interface HelloService {
-        Set<String> greet(String[] arr);
+        Set<Hello> greet(List<Hello> arr);
     }
     static class HelloServiceImpl implements HelloService {
 
         @Override
-        public Set<String> greet(String[] arr){
-            return Arrays.asList(arr)
+        public Set<Hello> greet(List<Hello> arr){
+            return arr
                     .stream()
-                    .filter(e -> e.startsWith("한국어"))
+                    .filter(e -> e.getInLanguage().equals("영어"))
                     .collect(Collectors.toSet());
         }
     }
     @Test void helloTest(){
-        HelloService service = new HelloServiceImpl();
-        String[] arr = {"한국어 안녕", "영어 Hello"};
-        Set<String> res = service.greet(arr);
-        res.forEach(System.out::print);
+        List<Hello> arr = Arrays.asList(
+                Hello.builder().inLanguage("영어").greeting("hello").build(),
+                Hello.builder().inLanguage("한국어").greeting("안녕").build()
+        );
+        new HelloServiceImpl()
+                .greet(arr)
+                .forEach(System.out::print);
     }
 }
 
