@@ -29,27 +29,21 @@ public class PersonStream {
     @Getter
     public static class Person{
         private String name, ssn;
+        private Boolean getGenderChecker(String ssn){
+            return ssn.substring(7,8).equals(ssn);
+        }
         @Override
         public String toString(){
-            String gender = (ssn.substring(7,8).equals("1")||ssn.substring(7,8).equals("3"))? "남자":"여자";
-
-            String year = (ssn.substring(7,8).equals("1")||ssn.substring(7,8).equals("2"))? "19"+ ssn.substring(0,2) : "20"+ ssn.substring(0,2);
-            int age = 2022 - Integer.parseInt(year) + 1;
+            String gender = (getGenderChecker("1")||getGenderChecker("3"))? "남자":"여자";
+            String ssnYear = ssn.substring(0,2);
+            String year = (Integer.parseInt(ssn.substring(7,8))<=2)? "19"+ ssnYear : "20"+ ssnYear;
+            int age = 2022 - Integer.parseInt(year) + 1; // 한국식 나이
 
             return String.format("name: %s, gender: %s, age: %d", name, gender, age);
         }
     }
-    interface  PersonService{
+    @FunctionalInterface interface  PersonService{
         Person search(List<Person> arr);
-    }
-    static class PersonServiceImpl implements PersonService{
-
-        @Override
-        public Person search(List<Person> arr) {
-            return arr.stream()
-                    .filter(e -> e.getName().equals("유관순"))
-                    .collect(Collectors.toList()).get(0);
-        }
     }
     @Test
     void personStreamTest(){
@@ -58,7 +52,9 @@ public class PersonStream {
                 Person.builder().name("김유신").ssn("970620-1").build(),
                 Person.builder().name("유관순").ssn("040920-4").build()
         );
-        System.out.println(new PersonServiceImpl()
-                .search(arr));
+        PersonService ps = persons -> persons.stream()
+                .filter(e -> e.getName().equals("유관순"))
+                .collect(Collectors.toList()).get(0);
+        System.out.println(ps.search(arr));
     }
 }
