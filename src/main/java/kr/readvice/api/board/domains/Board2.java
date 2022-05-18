@@ -10,5 +10,5 @@ package kr.readvice.api.board.domains;
  * ================================
  * 2022-05-09         최민서        최초 생성
  */
-public class Board {
+public class Board2 {
 }

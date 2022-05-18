@@ -43,7 +43,7 @@ public class PersonStream {
         }
     }
     @FunctionalInterface interface  PersonService{
-        Person search(List<Person> arr);
+        Person search(List<Person> persons);
     }
     @Test
     void personStreamTest(){

@@ -22,43 +22,43 @@ import java.util.List;
  */
 
 public class MaxMin {
-    @Builder
+    @Builder @Getter
     @AllArgsConstructor
     @NoArgsConstructor
-    @Getter
-    public static class MinMaxValue {
+    private static class Solution {
         private int[] arr;
+        private int max, min, elem;
 
         @Override
         public String toString() {
-            int min = 0;
-            int max = 0;
             return String.format("최소값: %d, 최대값: %d",min,max);
         }
     }
-    interface MaxMinService{
-        int getMin(int[] arr);
-        int getMax(int[] arr);
+    @FunctionalInterface private interface SolutionService{
+        Solution solution(Solution s);
     }
-    public class MaxMinServiceImpl implements MaxMinService{
-        @Override
-        public int getMin(int[] arr) {
-            int min = 0;
-            for(int i =1; i<5; i++){
-                if(arr[i] < arr[0]){ min = arr[i];}
-            }
-            return min;
-        }
 
-        @Override
-        public int getMax(int[] arr) {
+    @Test void MaxMinTest(){
+        int[] arr = {3,1,9,5,10};
+        SolutionService f = e ->{
             int max = 0;
-            for(int i =1; i<5; i++){
-                if(arr[i] > arr[0]){ max = arr[i];}
+            for(int i : e.getArr()){
+                if(i > max) max = i;
             }
-            return max;
-        }
+            int min = max;
+            for(int i : e.getArr()){
+                if(i < min) min = i;
+            }
+            /**
+            int max = 0;
+            int min = 10;
+            for(int i : e.getArr()){
+                if(i > max) max = i;
+                if(i < min) min = i;
+            }*/
+            return Solution.builder().min(min).max(max).build();
+        };
+        Solution s = Solution.builder().arr(arr).build();
+        System.out.println(f.solution(s));
     }
-    @Test void MaxMinTest(){}
-
 }
