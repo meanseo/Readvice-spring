@@ -1,12 +1,9 @@
 package kr.readvice.api.soccer.domains;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * packageName: kr.readvice.api.soccer.domains
@@ -18,16 +15,21 @@ import javax.persistence.Table;
  * ================================
  * 2022-05-09         최민서        최초 생성
  */
-@Data
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
 @Entity
-@Table(name = "palyer")
+@Table(name = "players")
 public class Player {
-    @Id private Long id;
+    @Id
+    @Column(name = "player_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private long playerNo;
     @Column(nullable = false) private String playerId;
-    private String playerName;
-    @Column(nullable = false) private String teamId;
-    private String nickName;
+    @Column(nullable = false)private String playerName;
+    private String ePlayerName;
+    private String nickname;
     private String joinYyyy;
     private String position;
     private String backNo;
@@ -36,4 +38,9 @@ public class Player {
     private String solar;
     private String height;
     private String weight;
+    private String teamId;
+
+    @ManyToOne
+    @JoinColumn(name = "team_no")
+    private Team team;
 }

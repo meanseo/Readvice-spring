@@ -1,12 +1,9 @@
 package kr.readvice.api.soccer.domains;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * packageName: kr.readvice.api.soccer.domains
@@ -18,18 +15,26 @@ import javax.persistence.Table;
  * ================================
  * 2022-05-09         최민서        최초 생성
  */
-@Data
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
 @Entity
-@Table(name = "schedule")
+@Table(name = "schedules")
 public class Schedule {
-    @Id private Long id;
-    @Column(nullable = false) private String stadiuImd;
+    @Id
+    @Column(name = "schedule_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private long scheduleNo;
     private String scheDate;
+    private String stadiumId;
     private String gubun;
     private String hometeamId;
     private String awayteamId;
-    private int homeScore;
-    private int awayScore;
+    private String homeScore;
+    private String awayScore;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stadium_no")
+    private Stadium stadium;
 }

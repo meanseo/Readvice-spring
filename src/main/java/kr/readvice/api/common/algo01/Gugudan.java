@@ -17,6 +17,8 @@ import javax.persistence.Access;
  * DATE              AUTHOR        NOTE
  * ================================
  * 2022-05-17         최민서        최초 생성
+ * 2022-05-19         김진영        구구단 풀이 추가
+ * 2022-05-19         조현국        구구단 풀이 추가 2
  */
 
 public class Gugudan {

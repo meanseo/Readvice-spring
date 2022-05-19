@@ -1,5 +1,9 @@
 package kr.readvice.api.soccer.repositories;
 
+import kr.readvice.api.soccer.domains.Team;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  * packageName: kr.readvice.api.soccer.repositories
  * fileName        : Teamrepositories
@@ -10,5 +14,11 @@ package kr.readvice.api.soccer.repositories;
  * ================================
  * 2022-05-09         최민서        최초 생성
  */
-public interface TeamRepository {
+
+interface TeamCustomRepository{
+
+}
+
+@Repository
+public interface TeamRepository extends JpaRepository<Team, Long> {
 }
