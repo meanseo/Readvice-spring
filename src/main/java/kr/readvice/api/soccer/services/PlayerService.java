@@ -22,6 +22,7 @@ import java.util.Optional;
 public interface PlayerService {
     void save(Player player);
     void delete(Player player);
+    void update(Player player);
     List<Player> findAll();
     List<Player> findAll(Sort sort);
     Page<Player> findAll(Pageable pageable);

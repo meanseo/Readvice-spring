@@ -36,6 +36,11 @@ public class PlayerServiceImpl implements PlayerService{
     public void delete(Player player) {repository.delete(player);}
 
     @Override
+    public void update(Player player) {
+
+    }
+
+    @Override
     public List<Player> findAll() {
         return repository.findAll();
     }
