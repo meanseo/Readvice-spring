@@ -1,5 +1,6 @@
 package kr.readvice.api.soccer.services;
 
+import kr.readvice.api.auth.domains.User;
 import kr.readvice.api.soccer.domains.Player;
 import kr.readvice.api.soccer.repositories.PlayerRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +33,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public void delete(Player player) {
-        repository.delete(player);
-    }
+    public void delete(Player player) {repository.delete(player);}
 
     @Override
     public List<Player> findAll() {

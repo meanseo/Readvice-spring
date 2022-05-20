@@ -36,6 +36,11 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
+    public void update(Team team) {
+        repository.update(team);
+    }
+
+    @Override
     public List<Team> findAll() {
         return repository.findAll();
     }

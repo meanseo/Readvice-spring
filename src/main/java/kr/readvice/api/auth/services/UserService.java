@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 public interface UserService {
-    String login(User user);
+    // String login(User user);
 
     List<User> findAll();
     List<User> findAll(Sort sort);
@@ -19,7 +19,7 @@ public interface UserService {
 
     long count();
 
-    String put(User user);
+    // String put(User user);
 
     String delete(User user);
 

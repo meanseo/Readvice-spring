@@ -1,6 +1,6 @@
 package kr.readvice.api.board.repositories;
 
-import kr.readvice.api.board.domains.Board2;
+import kr.readvice.api.board.domains.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
  * 2022-05-09         최민서        최초 생성
  */
 @Repository
-public interface BoardRepository extends JpaRepository<Board2, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long> {
 }

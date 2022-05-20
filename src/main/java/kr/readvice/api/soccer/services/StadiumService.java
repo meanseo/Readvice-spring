@@ -1,6 +1,5 @@
 package kr.readvice.api.soccer.services;
 
-import kr.readvice.api.soccer.domains.Schedule;
 import kr.readvice.api.soccer.domains.Stadium;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

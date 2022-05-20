@@ -14,16 +14,16 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService service;
 
     @PostMapping("/login")
-    public String login(@RequestBody User user){
-
-        return service.login(user);
-    }
+//    public String login(@RequestBody User user){
+//
+//        return service.login(user);
+//    }
     @GetMapping("/logout")
     public String logout(){
         return "";
@@ -45,10 +45,10 @@ public class UserController {
     public long count() {
         return service.count();
     }
-    @PutMapping("/put")
-    public String put (@RequestBody User user){
-        return service.put(user);
-    }
+//    @PutMapping("/put")
+//    public String put (@RequestBody User user){
+//        return service.put(user);
+//    }
     @DeleteMapping("/delete")
     public String delete(@RequestBody User user) {
         return service.delete(user);

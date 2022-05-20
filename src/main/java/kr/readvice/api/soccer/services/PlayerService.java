@@ -1,7 +1,6 @@
 package kr.readvice.api.soccer.services;
 
 import kr.readvice.api.auth.domains.User;
-import kr.readvice.api.board.domains.Article2;
 import kr.readvice.api.soccer.domains.Player;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +20,6 @@ import java.util.Optional;
  * 2022-05-09         최민서        최초 생성
  */
 public interface PlayerService {
-
     void save(Player player);
     void delete(Player player);
     List<Player> findAll();

@@ -16,9 +16,9 @@ import org.springframework.stereotype.Repository;
  */
 
 interface StadiumCustomRepository{
-
 }
 
 @Repository
-public interface StadiumRepository extends JpaRepository<Stadium, Long> {
+public interface StadiumRepository extends JpaRepository<Stadium, Long> , StadiumCustomRepository {
+
 }
