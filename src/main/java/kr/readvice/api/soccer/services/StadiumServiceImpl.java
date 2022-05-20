@@ -1,8 +1,14 @@
 package kr.readvice.api.soccer.services;
 
+import kr.readvice.api.soccer.domains.Schedule;
 import kr.readvice.api.soccer.repositories.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * packageName: kr.readvice.api.soccer.services
@@ -16,6 +22,36 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class StadiumServiceImpl {
+public class StadiumServiceImpl implements ScheduleService {
     private final ScheduleRepository repository;
+
+    @Override
+    public void save(Schedule schedule) {
+        repository.save(schedule);
+    }
+
+    @Override
+    public void delete(Schedule schedule) {
+        repository.delete(schedule);
+    }
+
+    @Override
+    public List<Schedule> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Schedule> findAll(Sort sort) {
+        return repository.findAll(sort);
+    }
+
+    @Override
+    public Page<Schedule> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    @Override
+    public long count() {
+        return repository.count();
+    }
 }
