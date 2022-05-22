@@ -24,12 +24,17 @@ interface TeamCustomRepository{
     @Query(value = "update team t set t.tel = :tel, t.fax = :fax where t.teamNo = :teamNo",
             nativeQuery = true)
     int update(@Param("tel") String tel, @Param("fax") String fax, @Param("teamNo") String teamNo);
+
     // 001. 전체 축구팀 목록을 팀이름 오름차순으로 출력하시오.
     @Query(value = "select t.teamName as teamname from team t order by t.teamName asc",
             nativeQuery = true)
     List<String> findTeamNamesAsc();
+    // 005-2. 수원팀의 ID는 ?
+    @Query(value = "select t.teamId as teamid from team.t where t.teamName = 수원:teamName",
+            nativeQuery = true)
+    String findTeamId(@Param("teamName") String teamName);
 }
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Long>{
+public interface TeamRepository extends JpaRepository<Team, Long>, TeamCustomRepository{
     void update(Team team);
 }
