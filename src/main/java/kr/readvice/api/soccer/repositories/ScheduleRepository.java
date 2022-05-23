@@ -18,12 +18,12 @@ import org.springframework.stereotype.Repository;
  * 2022-05-09         최민서        최초 생성
  */
 
-interface ScheduleCustomRepository{
-    // 000. 스케줄 날짜만 수정되도록 하시오.
-    @Query(value = "update schedule sc set sc.scheDate = :scheDate where sc.scheduleNo = :scheduleNo",
-            nativeQuery = true)
-    void update(@Param("scheDate") String scheDate, @Param("scheduleNo") String scheduleNo);
-}
+//interface ScheduleCustomRepository{
+//    // 000. 스케줄 날짜만 수정되도록 하시오.
+//    @Query(value = "update schedule sc set sc.scheDate = :scheDate where sc.scheduleNo = :scheduleNo",
+//            nativeQuery = true)
+//    void update(@Param("scheDate") String scheDate, @Param("scheduleNo") String scheduleNo);
+//}
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Long>{

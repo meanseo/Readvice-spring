@@ -17,14 +17,14 @@ import org.springframework.stereotype.Repository;
  * 2022-05-09         최민서        최초 생성
  */
 
-interface StadiumCustomRepository{
-    // 000. 스타디움 전화번호 tel 을 변경하도록 하시오.
-    @Query(value="update stadium s set s.tel = :tel where s.stadiumNo = :stadiumNo",
-            nativeQuery = true)
-    void update(@Param("tel") String tel, @Param("stadiumNo") String stadiumNo);
-}
+//interface StadiumCustomRepository{
+//    // 000. 스타디움 전화번호 tel 을 변경하도록 하시오.
+//    @Query(value="update stadium s set s.tel = :tel where s.stadiumNo = :stadiumNo",
+//            nativeQuery = true)
+//    void update(@Param("tel") String tel, @Param("stadiumNo") String stadiumNo);
+//}
 
 @Repository
-public interface StadiumRepository extends JpaRepository<Stadium, Long> , StadiumCustomRepository {
+public interface StadiumRepository extends JpaRepository<Stadium, Long>  {
 
 }

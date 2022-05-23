@@ -21,7 +21,7 @@ import java.util.List;
 public interface TeamService {
     void save(Team team);
     void delete(Team team);
-    void update(Team team);
+    // void update(Team team);
     List<Team> findAll();
     List<Team> findAll(Sort sort);
     Page<Team> findAll(Pageable pageable);

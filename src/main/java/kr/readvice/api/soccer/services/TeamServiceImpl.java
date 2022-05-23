@@ -35,10 +35,10 @@ public class TeamServiceImpl implements TeamService{
         repository.delete(team);
     }
 
-    @Override
-    public void update(Team team) {
-        repository.update(team);
-    }
+//    @Override
+//    public void update(Team team) {
+//        repository.update(team);
+//    }
 
     @Override
     public List<Team> findAll() {
