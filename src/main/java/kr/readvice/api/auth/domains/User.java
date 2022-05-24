@@ -3,6 +3,7 @@ package kr.readvice.api.auth.domains;
 import com.sun.istack.NotNull;
 import kr.readvice.api.board.domains.Article;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

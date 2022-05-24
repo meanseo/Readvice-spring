@@ -4,6 +4,8 @@ import kr.readvice.api.auth.domains.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 interface UserCustomRepository{
     void put(User user);
     String login(User user);
@@ -11,5 +13,5 @@ interface UserCustomRepository{
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
+    Optional<User> findUserByUsername(String username);
 }
