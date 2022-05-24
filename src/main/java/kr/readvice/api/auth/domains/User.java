@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Component
 @Entity
 @Table(name="users")
 public class User {
@@ -27,4 +26,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     List<Article> articles = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    public List<Role> roles;
 }
