@@ -1,8 +1,7 @@
 package kr.readvice.api.board.domains;
 
 import com.sun.istack.NotNull;
-import kr.readvice.api.auth.domains.User;
-import kr.readvice.api.board.domains.Board;
+import kr.readvice.api.user.domains.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

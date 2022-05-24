@@ -1,6 +1,5 @@
 package kr.readvice.api.soccer.services;
 
-import kr.readvice.api.auth.domains.User;
 import kr.readvice.api.soccer.domains.Player;
 import kr.readvice.api.soccer.repositories.PlayerRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * packageName: kr.readvice.api.soccer.services

@@ -1,8 +1,7 @@
-package kr.readvice.api.security.domains;
+package kr.readvice.api.auth.domains;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kr.readvice.api.auth.domains.User;
-import kr.readvice.api.security.Services.UserDetailsServiceImpl;
+import kr.readvice.api.user.domains.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,18 +24,18 @@ import java.util.stream.Collectors;
  */
 @Getter
 @RequiredArgsConstructor
-public class UserDetailsImpl implements UserDetails {
+public class Auth implements UserDetails {
     private final long userId;
     private final String username;
     @JsonIgnore private final String password;
     private final String name;
     private final String email;
 
-    public static UserDetailsImpl build(User user) {
+    public static Auth build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(user.getUserId(), user.getUsername(),
+        return new Auth(user.getUserId(), user.getUsername(),
                 user.getPassword(), user.getName(), user.getEmail(), authorities);
     }
 

@@ -1,8 +1,8 @@
-package kr.readvice.api.security.Services;
+package kr.readvice.api.auth.Services;
 
-import kr.readvice.api.auth.domains.User;
-import kr.readvice.api.auth.repositories.UserRepository;
-import kr.readvice.api.security.domains.UserDetailsImpl;
+import kr.readvice.api.user.domains.User;
+import kr.readvice.api.user.repositories.UserRepository;
+import kr.readvice.api.auth.domains.Auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,13 +23,13 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class AuthserviceImpl implements UserDetailsService {
     private final UserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = Optional.ofNullable(repository.findUserByUsername(username))
                 .orElseThrow(() -> new UsernameNotFoundException(username+"에 해당하는 객체가 존재하지 않습니다."));
-        return UserDetailsImpl.build(user.get());
+        return Auth.build(user.get());
     }
 }
