@@ -1,6 +1,7 @@
 package kr.readvice.api.user.services;
 
 import kr.readvice.api.auth.configs.AuthProvider;
+import kr.readvice.api.auth.domains.Messenger;
 import kr.readvice.api.auth.exception.SecurityRuntimeException;
 import kr.readvice.api.user.domains.Role;
 import kr.readvice.api.user.domains.User;
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static kr.readvice.api.common.lambda.Lambda.longParse;
+import static kr.readvice.api.common.lambda.Lambda.string;
 
 @Service
 @RequiredArgsConstructor
@@ -61,24 +65,36 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public long count() {
-        return repository.count();
+    public Messenger count() {
+        return Messenger.builder()
+                .message(string(repository.count())).build();
     }
 
     @Override
-    public String put(User user) {
-        return "";
+    public Messenger update(User user) {
+        return Messenger.builder().build();
     }
 
     @Override
-    public String delete(User user) {
+    public Messenger delete(User user) {
         repository.delete(user);
-        return "";
+        return Messenger.builder().build();
     }
 
     @Override
-    public String save(User user) {
-        return null;
+    public Messenger save(User user) {
+        String result = "";
+        if(repository.findByUsername(user.getUsername()).isEmpty()){
+            List<Role> list = new ArrayList<>();
+            list.add(Role.USER);
+
+            repository.save(User.builder().password(encoder.encode(user.getPassword()))
+                    .roles(list).build());
+            result = "SUCCESS";
+        }else {
+            result = "FAIL";
+        }
+        return Messenger.builder().message(result).build();
     }
 
     @Override
@@ -87,8 +103,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean existsById(String userid) {
-        return repository.existsById(0L);
+    public Messenger existsById(String userid) {
+        return repository.existsById(longParse(userid))
+                ? Messenger.builder().message("EXIST").build()
+                : Messenger.builder().message("NOT_EXIST").build();
     }
 
     @Override
