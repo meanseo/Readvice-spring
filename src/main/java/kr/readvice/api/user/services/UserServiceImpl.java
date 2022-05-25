@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +32,8 @@ public class UserServiceImpl implements UserService{
     public UserDTO login(User user) {
         try {
             UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-            User findUser = repository.findUserByUsername(user.getUsername()).orElse(null);
-            String pw = repository.findUserByUsername(user.getUsername()).get().getPassword();
+            User findUser = repository.findByUsername(user.getUsername()).orElse(null);
+            String pw = repository.findByUsername(user.getUsername()).get().getPassword();
             boolean checkPassword = encoder.matches(user.getPassword(), pw);
             String username = user.getUsername();
             List<Role> roles = findUser.getRoles();
@@ -77,7 +78,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String save(User user) {
-        repository.save(user);
         return null;
     }
 
