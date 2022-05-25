@@ -14,7 +14,7 @@ import lombok.Getter;
  * 2022-05-23         최민서        최초 생성
  */
 @Getter @Builder
-public class Messanger {
+public class Messenger {
     private String message, code;
     private int status;
 }

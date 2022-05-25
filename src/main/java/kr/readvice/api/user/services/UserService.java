@@ -1,6 +1,7 @@
 package kr.readvice.api.user.services;
 
 import  kr.readvice.api.user.domains.User;
+import kr.readvice.api.user.domains.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -11,7 +12,8 @@ import java.util.Optional;
 
 
 public interface UserService {
-    // String login(User user);
+
+    UserDTO login(User user);
 
     List<User> findAll();
     List<User> findAll(Sort sort);
@@ -19,7 +21,7 @@ public interface UserService {
 
     long count();
 
-    // String put(User user);
+    String put(User user);
 
     String delete(User user);
 
