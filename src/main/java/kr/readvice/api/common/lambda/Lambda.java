@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import static kr.readvice.api.common.dataStructure.AppleList.Apple;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 import java.util.function.*;
 
@@ -58,8 +60,13 @@ public class Lambda {
         Function<String, File> f = File::new;
         return f.apply(s);
     }
-    @Test void lambdaAppTest(){
-        // System.out.println(integer("900"));
+
+    public static String date(){
+        Supplier<String> f = ()-> string(LocalDate.now());
+        return f.get();
+    }
+
+    @Test void lambdaAppTest(){// System.out.println(integer("900"));
         /**
          System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
          System.out.println(

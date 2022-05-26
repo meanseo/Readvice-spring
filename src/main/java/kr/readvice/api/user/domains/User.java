@@ -12,8 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name="users")
+@ToString
 public class User {
     @Id
     @Column(name = "user_id") @GeneratedValue private long userId;
