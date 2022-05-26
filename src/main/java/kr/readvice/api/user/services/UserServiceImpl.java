@@ -117,4 +117,8 @@ public class UserServiceImpl implements UserService{
         // ls.stream().filter();
         return null;
     }
+    @Override
+    public Messenger logout() {
+        return Messenger.builder().build();
+    }
 }
