@@ -48,6 +48,9 @@ public class UserServiceImpl implements UserService{
                     returnUser.setToken(token);
                 }
             }
+            else {
+                returnUser.setToken("FAILURE");
+            }
             return returnUser;
         }catch (Exception e){
             throw new SecurityRuntimeException("유효하지 않은 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
